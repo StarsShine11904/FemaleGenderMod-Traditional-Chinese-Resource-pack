@@ -1,4 +1,4 @@
-name:打包 Minecraft 資源包
+name: 打包 Minecraft 資源包
 
 # 允許手動觸發，並設定三個輸入欄位
 on:
