@@ -1,13 +1,17 @@
-name: 打包Minecraft資源包
+name: 打包 Minecraft 資源包
 
-# on: workflow_dispatch 代表這是一個純手動觸發的工作流
+# 允許手動觸發，並設定兩個輸入欄位
 on:
   workflow_dispatch:
     inputs:
-      version_name:
-        description: '資源包版本名稱 (這會成為檔名，例如: v1.0.0)'
+      pack_name:
+        description: '資源包名稱 (例如: FemaleGenderMod-TC)'
         required: true
-        default: 'latest'
+        default: 'MyResourcePack'
+      version_name:
+        description: '版本號 (例如: v1.0.0)'
+        required: true
+        default: 'v1.0.0'
 
 jobs:
   build:
@@ -15,17 +19,15 @@ jobs:
 
     steps:
       - name: 📥 檢出程式碼 (Checkout)
-        # 這裡會自動根據你在介面上選擇的分支來拉取程式碼
         uses: actions/checkout@v4
 
       - name: 📦 打包資源包 (Zip files)
         run: |
-          # 設定打包後的檔案名稱
-          ZIP_NAME="ResourcePack-${{ github.event.inputs.version_name }}.zip"
+          # 讀取你輸入的名稱與版本，組合出最終的壓縮檔名
+          # 例如: FemaleGenderMod-TC_v1.0.0.zip
+          ZIP_NAME="${{ github.event.inputs.pack_name }}_${{ github.event.inputs.version_name }}.zip"
           
-          # 將當前目錄下的所有檔案壓縮
-          # -r 代表遞迴處理資料夾
-          # -x 代表排除特定不需要打包進遊戲的檔案，避免資源包過大
+          # 將當前目錄下的所有檔案壓縮，並排除不需要的檔案
           zip -r "$ZIP_NAME" . -x "*.git*" -x ".github/*" -x "*.DS_Store" -x "README.md"
           
           # 將檔名記錄到環境變數，方便下一步驟讀取
@@ -34,6 +36,7 @@ jobs:
       - name: 📤 上傳打包結果 (Upload Artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: minecraft-resource-pack-${{ github.event.inputs.version_name }}
+          # 設定 GitHub Actions 介面上顯示的 Artifact 名稱
+          name: ${{ github.event.inputs.pack_name }}-${{ github.event.inputs.version_name }}
           path: ${{ env.ZIP_FILE }}
-          retention-days: 30 # 設定檔案保留天數，可自行調整
+          retention-days: 30
