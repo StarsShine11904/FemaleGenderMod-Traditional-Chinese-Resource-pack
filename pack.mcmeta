@@ -1,10 +1,10 @@
 {
   "pack": {
     "pack_format": 64,
-    "supported_formats": [1, 70.1],
-    "min_format": 1,
-    "max_format": 70.1,
-    "description": "Female Gender Mod繁體中文包 版本：1.21.8 v1.0"
+    "supported_formats": [56, 64],
+    "min_format": 56,
+    "max_format": 64,
+    "description": "Female Gender Mod繁體中文包 版本：1.21.6-1.21.8 v1.1"
   }
 
 }
