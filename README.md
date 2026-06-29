@@ -4,7 +4,7 @@
 **你需要安裝該模組才能使用此包**<br>
 點這裡下載 [Female Gender Mod](https://modrinth.com/mod/female-gender)
 <br>若原始模組有更新或者翻譯失效問題，請到Github開啟Issus進行回報
-<br>翻譯效果預覽請看[Modrinth 圖庫](https://modrinth.com/resourcepack/femalegendermod-traditional-chinese-resource-pack/gallery)
+<br>翻譯效果預覽請看[Modrinth 圖庫](https://modrinth.com/resourcepack/femalegendermod-tcrp/gallery)
 <details>
   <summary>English</summary>
 
